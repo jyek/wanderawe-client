@@ -1,0 +1,10 @@
+.DS_Store
+node_modules
+dist
+.tmp
+.sass-cache
+app/bower_components
+app/index.html.backup
+gulpfile.js
+wanderawe.pem
+up.sh

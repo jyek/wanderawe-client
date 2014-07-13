@@ -1,0 +1,28 @@
+<div class="singlephoto">
+
+  <div class="animated {{ slideEffect }}">
+    <div class="single-image" ng-style="{ 'width': finalWidth + 'px' }">
+      <div class="single-image-div">
+        <img ng-src="photos/{{ photoPath }}" width="{{ finalWidth }}" height="{{ finalHeight }}" alt="Single Photo" />
+        <a ng-click="goBack()"><i class="icon-cancel-circled"></i></a>
+      </div>
+      <div class="singlephoto-caption">
+        <p><strong>{{ currentPicture.title }}</strong> - {{ currentPicture.description }}<br>
+        <span class="singlephoto-caption-small"><a ng-click="goToProfile(currentPicture.author); $event.stopPropagation();">{{ currentPicture.username }}</a> . {{ currentPicture.fullAddress }} . {{ currentPicture.month }} {{ currentPicture.year }}</span><p>
+      </div>
+      <div class="social-share">
+        <a class="like" ng-click="likePhoto(); $event.stopPropagation();"><i class="icon-heart">{{ currentPicture.vote }}</i></a>
+        <a ng-click="shareOnFacebook()"><i class="icon-facebook"></i></a>
+        <a ng-href="https://twitter.com/share?url=http%3A%2F%2Fwanderawe.com%2Fsinglephoto%2F{{ currentPicture._id }}" target="_blank"><i class="icon-twitter"></i></a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="singlephoto-arrow">
+    <i class="singlephoto-arrow-icon icon-left-open" ng-click="showPrevPhoto(currentIdx, currentPhotos, totalNumPhotos)"></i>
+    <span ng-cloak>{{ currentIdx + 1}} / {{ totalNumPhotos }}</span>
+    <i class="singlephoto-arrow-icon icon-right-open" ng-click="showNextPhoto(currentIdx, currentPhotos, totalNumPhotos)"></i>
+  </div>
+
+</div>

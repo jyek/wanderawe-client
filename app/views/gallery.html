@@ -1,0 +1,32 @@
+<div class="gallery-container">
+  <p class="gallery-text pulse" ng-if="!pictures.length">
+    No one has uploaded photos to {{ currentCategory }} in {{ currentLocation }} yet! {{ message }} don't you be the first?
+  </p>
+
+  <div class="gallery" ng-style="{ 'width': windowWidth + 'px' }">
+    <div class="photo-container" ng-style="{ 'position': 'absolute', 'left': position[$index]['left'] || 0 + 'px', 'top': position[$index]['top'] || 0 + 'px' }" ng-if="pictures.length" ng-repeat="picture in pictures">
+      <div class="view view-first">
+        <!-- Use a div and 'cover' background with image -->
+        <div ng-style="{ 'width': width + 'px', 'height': height + 'px', 'background': 'url(\'photos/' + picture._id + '-small.' + picture.fileType + '\') no-repeat center center', 'background-size': 'cover' }" class="photo-container"></div>
+
+        <div class="mask" ng-click="goToSinglePhoto($index)">
+          <div class="top-post">
+            <h2>{{ picture.title }}</h2>
+            <div class="post-border"></div>
+            <p class="caption-small"><a ng-click="goToProfile(picture.author); $event.stopPropagation();">{{ picture.username }}</a> . <a ng-click="goToCountry(picture.country); $event.stopPropagation();">{{ picture.country }}</a></p>
+            <!-- <p>Category: {{ getPhotoCategory(picture) }}</p> -->
+            <!-- <p>Description: {{ picture.description }}</p> -->
+          </div>
+          <div class="bottom-post">
+            <a class="remove" ng-if="showPhoto(picture)" ng-click="removePhoto($index); $event.stopPropagation();"><i class="icon-trash small"></i></a>
+            <a class="like" ng-click="likePhoto($index); $event.stopPropagation();"><i class="icon-heart">{{ picture.vote }}</i></a>
+          </div>
+        </div>
+
+      </div> <!-- end view -->
+    </div> <!-- end photo-container -->
+  </div> <!-- end gallery -->
+</div> <!-- end gallery-container -->
+
+<!-- clearfix ensures that the footer in index.html does not bump into the photos in gallery view -->
+<div class="clearfix"></div>
